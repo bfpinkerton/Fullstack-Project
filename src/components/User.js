@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Container, Paper, Button } from '@mui/material';
-
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 
 
@@ -37,12 +37,15 @@ useEffect(()=>{
 },[])
   return (
     <Container>
-        <Paper elevation = {3} style={paperStyle}>
+        <Paper elevation = {3}   style={{
+            padding: '50px 20px', width:600, margin:"20px auto",
+    backgroundColor: "lightgrey",border: "1px solid black"
+  }}>
             <h1>Create a Post</h1>
         <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
+        '& > :not(style)': { m: 1, width: '25ch'},
       }}
       noValidate
       autoComplete="off"
@@ -53,7 +56,11 @@ useEffect(()=>{
     <TextField id="outlined-basic" label="User link" variant="outlined" fullWidth
     value={link} onChange={(e)=>setLink(e.target.value)}
     />
-    <TextField id="outlined-basic" label="User comment" variant="outlined" fullWidth
+  <TextareaAutosize
+  aria-label="maximum height"
+  minRows={3}
+  placeholder="What's on your mind?"
+  style={{ width: 500, height: 200 }}
     value={comment} onChange={(e)=>setComment(e.target.value)}
     /><br/>
     <Button variant="contained" onClick={handleClick}>Submit</Button>
@@ -61,8 +68,12 @@ useEffect(()=>{
     
     </Box>
     </Paper>
+  
+    <Paper elevation = {3}   style={{
+            padding: '50px 20px', width:600, margin:"20px auto",
+    backgroundColor: "lightgrey",border: "1px solid black"
+  }}>
     <h1>Posts</h1>
-    <Paper elevation={3} style={paperStyle}>
         {users.map(user=>(
             <Paper elevation={6} style ={{margin:"10px",padding:"15px",textAlign:"left"}} key={user.id}>
                 <a href={user.link}>{user.link}</a><br/>
